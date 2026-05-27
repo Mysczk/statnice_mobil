@@ -83,7 +83,7 @@ erDiagram
         REAL intensity
     }
 
-    sessions ||--o{ samples : "má"
+    sessions ||--o{ samples : "id → session_id"
 ```
 
 ### Tabulka `sessions`
