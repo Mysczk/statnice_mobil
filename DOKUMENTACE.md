@@ -160,10 +160,15 @@ Soubor `constants/constants.ts` centralizuje všechny aplikační konstanty:
 | ACCEL_UPDATE_MS | 200 | Interval čtení dat akcelerometru (ms) |
 | SAMPLE_INTERVAL_MS | 3 000 | Interval ukládání vzorků do databáze (ms) |
 | GRAVITY | 1.0 | Referenční hodnota gravitace (normalizovaná) |
-| INTENSITY_THRESHOLD | 0.15 | Minimální intenzita pro odložení notifikace |
+| INTENSITY_THRESHOLD | 0.15 | Minimální intenzita pohybu pro odložení notifikace |
+| INTENSITY_THRESHOLDS | [0.1, 0.3, 0.6] | Prahové hodnoty pro kategorizaci intenzity |
+| INTENSITY_LABELS | ['Klid', 'Lehké', 'Střední', 'Rychlé'] | Slovní popis kategorií intenzity |
+| INTENSITY_COLORS | ['#8E8E93', '#00C896', '#FF9500', '#FF3B30'] | Barvy kategorií intenzity |
 | NOTIFICATION_DELAY_SECONDS | 300 | Prodleva notifikace při neaktivitě (s) |
 | NOTIFICATION_THROTTLE_MS | 30 000 | Minimální interval přeplánování notifikace (ms) |
 | LOCATION_UPDATE_MS | 5 000 | Interval GPS aktualizací (ms) |
+| DISTANCE_INTERVAL | 5 | Minimální změna polohy pro GPS update (m) |
+| DISTANCE_NOISE | 50 | Maximální přírůstek vzdálenosti pro filtraci GPS šumu (m) |
 | R_EARTH | 6 371 000 | Střední poloměr Země (m) |
 
 ---
