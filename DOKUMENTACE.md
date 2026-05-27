@@ -64,6 +64,28 @@ tracker/
 
 ## 4. Datový model
 
+```mermaid
+erDiagram
+    sessions {
+        INTEGER id PK
+        INTEGER started_at
+        INTEGER ended_at
+        INTEGER total_steps
+        REAL avg_intensity
+        REAL distance_meters
+    }
+
+    samples {
+        INTEGER id PK
+        INTEGER session_id FK
+        INTEGER recorded_at
+        INTEGER steps
+        REAL intensity
+    }
+
+    sessions ||--o{ samples : "má"
+```
+
 ### Tabulka `sessions`
 
 | Sloupec | Typ | Popis |
