@@ -1,0 +1,11 @@
+export const SAMPLE_INTERVAL_MS = 3000;
+export const ACCEL_UPDATE_MS = 200;
+export const GRAVITY = 1.0; // g
+export const LOCATION_UPDATE_MS = 5000; // GPS každých 5s
+export const R_EARTH = 6371000; // poloměr Země v metrech
+export const NOTIFICATION_THROTTLE_MS = 30_000; // max jednou za 30s přeplánovat notifikaci
+export const NOTIFICATION_DELAY_SECONDS = 10;
+export const INTENSITY_THRESHOLD = 0.15; // prahová intenzita pro odložení notifikaceno
+export const INTENSITY_LABELS = ['Klid', 'Lehké', 'Střední', 'Rychlé'];
+export const INTENSITY_COLORS = ['#8E8E93', '#00C896', '#FF9500', '#FF3B30'];
+export const INTENSITY_THRESHOLDS = [0.1, 0.3, 0.6];
