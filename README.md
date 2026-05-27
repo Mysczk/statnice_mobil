@@ -3,7 +3,7 @@
 Mobilní aplikace pro záznam fyzické aktivity na platformách iOS a Android. Měří počet kroků, intenzitu pohybu a překonanou vzdálenost GPS. Data jsou ukládána lokálně a lze je exportovat do CSV nebo JSON.
 
 **Ukázka:** [Video funkčnosti](https://drive.google.com/drive/folders/1ctnEvxoD58NZsiDI4n8yvhEdy-XFczDN?usp=sharing)
-
+> Export dat není ve videu záměrně ukázán — systémový dialog sdílení zobrazuje kontakty a citlivé osobní údaje, které nejsou určeny ke zveřejnění.
 ---
 
 ## Dokumentace
