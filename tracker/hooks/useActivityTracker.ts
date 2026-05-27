@@ -15,6 +15,8 @@ import {
   NOTIFICATION_THROTTLE_MS,
   LOCATION_UPDATE_MS,
   R_EARTH,
+  DISTANCE_INTERVAL,
+  DISTANCE_NOISE,
 } from '@/constants/constants';
 import * as Location from 'expo-location';
 
@@ -87,18 +89,15 @@ export function useActivityTracker() {
     distanceRef.current = 0;
     lastLocationRef.current = null;
 
-    // Notifikace po 5 minutách neaktivity
     await requestNotificationPermission();
     await scheduleInactivityNotification(NOTIFICATION_DELAY_SECONDS);
 
-    // Akcelerometr — pouze pro intenzitu pohybu
     Accelerometer.setUpdateInterval(ACCEL_UPDATE_MS);
     accelSubRef.current = Accelerometer.addListener(({ x, y, z }) => {
       accelRef.current = { x, y, z };
       const intensity = calcIntensity(x, y, z);
       setCurrentIntensity(intensity);
 
-      // Při pohybu odlož notifikaci — max jednou za 30s (throttle)
       if (intensity > INTENSITY_THRESHOLD) {
         const now = Date.now();
         if (now - lastNotifRescheduleRef.current > NOTIFICATION_THROTTLE_MS) {
@@ -115,7 +114,7 @@ export function useActivityTracker() {
         {
           accuracy: Location.Accuracy.Balanced,
           timeInterval: LOCATION_UPDATE_MS,
-          distanceInterval: 5, // min. 5 metrů změna
+          distanceInterval: DISTANCE_INTERVAL,
         },
         (loc) => {
           const { latitude, longitude } = loc.coords;
@@ -126,8 +125,7 @@ export function useActivityTracker() {
               latitude,
               longitude
             );
-            // Filtruj GPS šum — ignoruj skoky větší než 50m za 5s
-            if (d < 50) {
+            if (d < DISTANCE_NOISE) {
               distanceRef.current += d;
               setDistanceMeters(distanceRef.current);
             }
@@ -153,12 +151,10 @@ export function useActivityTracker() {
       });
     }
 
-    // Hodinky — elapsed time
     timerRef.current = setInterval(() => {
       setElapsedSeconds(Math.floor((Date.now() - startTimeRef.current) / 1000));
     }, 1000);
 
-    // Ukládání vzorků do DB každé 3s
     sampleTimerRef.current = setInterval(() => {
       const { x, y, z } = accelRef.current;
       const intensity = calcIntensity(x, y, z);
@@ -198,7 +194,6 @@ export function useActivityTracker() {
     return sessionId;
   }, [sessionId]);
 
-  // Cleanup při unmountu komponenty
   useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);

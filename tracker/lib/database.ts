@@ -4,7 +4,7 @@ const db = SQLite.openDatabaseSync('activity.db');
 
 export interface Session {
   id: number;
-  started_at: number;      // unix timestamp ms
+  started_at: number;
   ended_at: number | null;
   total_steps: number;
   avg_intensity: number;
@@ -14,9 +14,9 @@ export interface Session {
 export interface Sample {
   id: number;
   session_id: number;
-  recorded_at: number;     // unix timestamp ms
+  recorded_at: number;
   steps: number;
-  intensity: number;       // 0.0 – 1.0
+  intensity: number;
 }
 
 export function initDB() {
@@ -38,15 +38,13 @@ export function initDB() {
       FOREIGN KEY (session_id) REFERENCES sessions(id)
     );
   `);
-  // v initDB, za CREATE TABLE:
   try {
     db.execSync('ALTER TABLE sessions ADD COLUMN distance_meters REAL DEFAULT 0');
   } catch {
-    // sloupec už existuje, ignoruj
+    
   }
 }
 
-// Sessions
 export function createSession(): number {
   const result = db.runSync(
     'INSERT INTO sessions (started_at) VALUES (?)',

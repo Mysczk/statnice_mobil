@@ -20,7 +20,7 @@ function intensityColor(v: number): string {
 
 export default function TrackScreen() {
   const router = useRouter();
-  const { isTracking, currentIntensity, stepCount, elapsedSeconds, distanceMeters, start, stop, isPedometerAvailable } = useActivityTracker();
+  const { isTracking, currentIntensity, stepCount, elapsedSeconds, distanceMeters, start, stop } = useActivityTracker();
 
   const handleStop = () => {
     Alert.alert('Ukončit měření', 'Opravdu chceš ukončit měření?', [
