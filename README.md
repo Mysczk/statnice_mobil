@@ -35,8 +35,8 @@ Mobilní aplikace pro záznam fyzické aktivity na platformách iOS a Android. M
 
 ```bash
 # 1. Klonování repozitáře
-git clone <url-repozitare>
-cd tracker
+git clone git@github.com:Mysczk/statnice_mobil.git
+cd statnice_mobil/tracker
 
 # 2. Instalace závislostí
 npm install

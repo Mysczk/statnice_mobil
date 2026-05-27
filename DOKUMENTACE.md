@@ -181,8 +181,8 @@ Soubor `constants/constants.ts` centralizuje všechny aplikační konstanty:
 
 **1. Klonování repozitáře**
 ```bash
-git clone <url-repozitare>
-cd tracker
+git clone git@github.com:Mysczk/statnice_mobil.git
+cd statnice_mobil/tracker
 ```
 
 **2. Instalace závislostí**
